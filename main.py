@@ -6,7 +6,7 @@ import string
 import json
 
 url = "https://api.wakatime.com/api/v1/users/current/heartbeats"
-querystring = {"api_key": "waka_8a6ef3a2-4a62-4a76-a783-4249d8751d9a"}
+querystring = {"api_key": "YOUR_APIKEY"}
 headers = {
     "content-type": "application/json",
     "X-Machine-Name": "Windows"
