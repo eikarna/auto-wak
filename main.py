@@ -75,9 +75,9 @@ def main(apikey, namefile, eksfile, projectname, language):
                 )
                 print(json.dumps(response.json(), indent=2))
                 time.sleep(1)
-            except Exception as err:
-                print(f"An error occurred: {err}")
-                pass
+            except requests.exceptions.RequestException as err:
+                print(f"An error occurred when sending request: {err}")
+
     except KeyboardInterrupt:
         print("\nProgram interrupted by user. Exiting...")
         sys.exit(1)
