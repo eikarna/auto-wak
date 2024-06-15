@@ -1,0 +1,51 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  workflow_dispatch:
+    inputs:
+      apikey:
+        description: "Input your Wakatime API-Key"
+        required: true
+        default: "waka_"
+      filename:
+        description: "Current File Name edited"
+        required: true
+        default: "test"
+      eks:
+        description: "Current File Extension Name edited"
+        required: true
+        default: "js"
+      projn:
+        description: "Current Working Project Name"
+        required: true
+        default: "auto-wak"
+      lang:
+        description: "Current Programming Language"
+        required: true
+        default: "JavaScript"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run Wakatime Automation
+      run: |
+        python main.py ${{github.event.inputs.apikey}} ${{github.event.inputs.filename}} ${{github.event.inputs.eks}} ${{github.event.inputs.projn}} ${{github.event.inputs.lang}}
