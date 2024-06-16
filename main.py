@@ -57,7 +57,6 @@ def generate_payload(namefile, eksfile, projectname, language):
                 "designing",
             ]
         ),
-        "hostname": "Windows",
         "branch": random.choice(["main", "master", "dev"]),
     }
 
