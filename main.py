@@ -58,7 +58,7 @@ def generate_payload(namefile, eksfile, projectname, language):
             ]
         ),
         "hostname": "Windows",
-        "branch": "main",
+        "branch": random.choice(["main", "master", "dev"]),
     }
 
 
@@ -74,7 +74,7 @@ def main(apikey, namefile, eksfile, projectname, language):
                     URL, json=payload, headers=headers, params=querystring, timeout=1500
                 )
                 print(json.dumps(response.json(), indent=2))
-                time.sleep(1)
+                time.sleep(random.randint(1, 4))
             except requests.exceptions.RequestException as err:
                 print(f"An error occurred when sending request: {err}")
 
